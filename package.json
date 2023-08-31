@@ -7,7 +7,7 @@
     "build": "TSC",
     "start": "yarn build && node dist/src/index.js",
     "start:dev": "ts-node-dev src/index.ts",
-    "test:functional": "jest --projects .test --runInBand",
+    "test:functional": "jest --projects ./test --runInBand",
     "lint": "eslint ./src ./test --ext .ts",
     "lint:fix": "eslint ./src ./test --ext .ts --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
