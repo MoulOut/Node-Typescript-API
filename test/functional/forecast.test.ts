@@ -1,5 +1,21 @@
+import { Beach, BeachPosition } from "@src/models/beach";
+import nock from 'nock';
+
 describe('Beach forecast functional tests', () => {
+  beforeEach(async() => {
+    await Beach.deleteMany({});
+    const defaultBeach = {
+      lat: -33.792726,
+      lng: 151.289824,
+      name: 'Manly',
+      position: BeachPosition.E
+    };
+    const beach = new Beach(defaultBeach);
+    await beach.save();
+  });
+  
   it('should return a forecast with just a few times', async () => {
+    nock.recorder.rec();
     const { body, status } = await global.testRequest.get('/forecast');
     expect(status).toBe(200);
     // Make sure we use toEqual to check value not the object and array itself
